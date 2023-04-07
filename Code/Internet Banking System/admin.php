@@ -31,11 +31,15 @@
             />
             <br />
             <button class="closeAccBtn">Close Account</button>
-          </form>
-         
-        </div>
-      </div>
 
+          </form>
+         <button style="width:60%;height:30%;margin-top:7px;"class="logout" onclick="location.href='logout.php'">
+         Log Out
+          </button>
+        </div>
+        
+      </div>
+      
       <table class="allaccounts">
         <tr>
           
