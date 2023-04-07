@@ -105,6 +105,9 @@
         echo '<script>document.querySelector(".welcomeTitle").innerHTML = "Welcome, '.$_SESSION['firstName'].'";</script>';
     }
     echo '<script>document.querySelector(".date").innerHTML = "'.date('Y-m-d').'";</script>';
+
+    
+    
     ?>
   </body>
 </html>

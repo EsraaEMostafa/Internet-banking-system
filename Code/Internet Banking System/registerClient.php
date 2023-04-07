@@ -92,7 +92,7 @@ function validate_Register_data($firstName,$lastName, $email,$password,$confirmP
     else{
         
         echo '<script>
-        alert("invalid first name or last name");
+        alert("invalid first name or last name, they should contains letters only");
         window.location.href="register.php";
         </script>';
     }

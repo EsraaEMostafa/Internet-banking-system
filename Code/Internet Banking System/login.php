@@ -15,14 +15,14 @@ function validate_login_admin_data($email, $password,$connection){
             }
             else{
                 echo '<script>
-            alert("invalid password");
+            alert("invalid data");
             window.location.href="index.php";
             </script>';
             }
         }
         else{
             echo '<script>
-        alert("invalid email");
+        alert("invalid data");
         window.location.href="index.php";
         </script>';
         }
@@ -43,7 +43,7 @@ function validate_client_login_data($email,$password, $connection){
             }
             else{
                 echo '<script>
-            alert("invalid password");
+            alert("invalid data");
             window.location.href="index.php";
             </script>';
             }
@@ -51,7 +51,7 @@ function validate_client_login_data($email,$password, $connection){
         }
         else{
             echo '<script>
-            alert("invalid email");
+            alert("invalid data");
             window.location.href="index.php";
             </script>';
         }
