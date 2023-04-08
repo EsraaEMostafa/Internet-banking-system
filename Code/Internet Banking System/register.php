@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" type="image/png" href="/icon.png" />
+    
 
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
@@ -25,47 +26,47 @@
         ><br />
         <input
           type="text"
+          class="input-field"
           placeholder="Type your first name"
           name="fname"
-          minlength="2"
           maxlength="15"
-          required
         /><br />
         <label for="lname"><b>Last Name</b></label
         ><br />
         <input
           type="text"
+          class="input-field"
           placeholder="Type your last name"
           name="lname"
-          minlength="2"
-          maxlength="15"
-          required
+         maxlength="15"
         /><br />
         <label for="email"><b>Email</b></label
         ><br />
         <input
-          type="email"
+          type="text"
+          class="input-field"
           placeholder="Type your email"
           name="email"
-          required
+          
         /><br />
 
         <label for="psw"><b>Password</b></label
         ><br />
         <input
           type="password"
+          class="input-field"
           placeholder="Type your password"
           name="psw"
-          minlength="8"
-          required
+          
         /><br />
         <label for="confirmpsw"><b>Confirm Password</b></label
         ><br />
         <input
           type="password"
+          class="input-field"
           placeholder="Type your password"
           name="confirmpsw"
-          required
+          
         /><br />
 
         <button type="submit">Register</button><br />
@@ -75,5 +76,6 @@
       </div>
       <br />
     </form>
+
   </body>
 </html>

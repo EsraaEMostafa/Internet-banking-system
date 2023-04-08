@@ -22,13 +22,14 @@
           <h2 class="welcomeTitle"></h2>
           <img src="logo.jpeg" class="logo" width="100px" height="100px" />
           <div class="accountspart">
-            <form action="addAccount.php">
-              <button class="accbtn">Add New Account</button>
+            <form action="viewClient.php">
+              <button type="submit" class="accbtn" name="addNewAccount">Add New Account</button>
             </form>
             
             <select name="accounts" id="account" onchange="showUser(this.value);showUserBalance(this.value)">
               <option selected disabled>Select Account No.</option>
-              <?php include("insertAccountsinList.php");?>
+              <?php include("viewClient.php");
+              viewAccountsList();?>
             
             </select>
               
@@ -39,12 +40,12 @@
         <div class="column">
           <div class="balance">
             <div>
-              <p class="balance__label">Current balance</p>
+              <!--p class="balance__label">Current balance</p-->
               <p class="balance__date">
                 As of <span class="date"></span>
               </p>
             </div>
-            <p class="balance__value"></p>
+            <!--p class="balance__value"></p-->
           </div>
 
           <!-- MOVEMENTS -->
@@ -64,7 +65,7 @@
           <div class="operation operation--transfer">
             <h2>Transfer money</h2>
 
-            <form class="form form--transfer" action="transferMoney.php" method="post">
+            <form class="form form--transfer" action="viewClient.php" method="post">
               <div class="formm">
                 <div class="form1">
                   <label for="accnum" class="accountnum"
@@ -75,7 +76,7 @@
                     placeholder="Account no."
                     name="accnum"
                     class="accNum"
-                    required
+                    
                   />
                 </div>
                 <div class="form2">
@@ -85,11 +86,11 @@
                     placeholder="Amount"
                     name="amount"
                     class="amountmoney"
-                    required
+                    
                   />
                 </div>
               </div>
-              <button type="submit" class="transferbtn"><b>Transfer</b></button>
+              <button type="submit" class="transferbtn" name="transferMoney"><b>Transfer</b></button>
             </form>
           </div>
           <button class="logout" onclick="location.href='logout.php'">

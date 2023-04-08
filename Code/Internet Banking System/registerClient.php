@@ -23,6 +23,7 @@ function validate_Register_data($firstName,$lastName, $email,$password,$confirmP
     $lastnamespecialchars=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $lastName);
     $firstnamenums=preg_match('@[0-9]@', $firstName);
     $lastnamenums=preg_match('@[0-9]@', $lastName);
+    $emailFormat=filter_var($email, FILTER_VALIDATE_EMAIL);
     // Validate password strength
     
     $lowercase = preg_match('@[a-z]@', $password);
@@ -39,7 +40,8 @@ function validate_Register_data($firstName,$lastName, $email,$password,$confirmP
     if($email==isset($row['email']))
     {
         echo '<script>
-        alert("email already exists");
+        //alert("email already exists");
+        alert("invalid data")
         window.location.href="register.php";
         </script>';
         
@@ -47,9 +49,9 @@ function validate_Register_data($firstName,$lastName, $email,$password,$confirmP
     
     }
     else{
-
-        if(!$firstnamespecialchars && !$lastnamespecialchars && !$firstnamenums && !$lastnamenums && $firstNamespaces && $lasttNamespaces){
-            if($lowercase && $number && $specialChars){
+       
+        if(!$firstnamespecialchars && !$lastnamespecialchars && !$firstnamenums && !$lastnamenums && $firstNamespaces && $lasttNamespaces && strlen($firstName)>=2 && strlen($lastName)>=2 && $emailFormat){
+            if($lowercase && $number && $specialChars && strlen($password) >= 8){
                 if($confirmPassword==$password){
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                     $query="INSERT INTO client(firstName,lastName,email,passwords) VALUES('".$firstName."','".$lastName."','".$email."','".$hashed_password."')";
@@ -70,11 +72,12 @@ function validate_Register_data($firstName,$lastName, $email,$password,$confirmP
                         die("Database query failed. " . mysqli_error($connection)); 
                 //last bit is for me, delete when done
                     }
-                }//**** */
+                }
                 else{
                     
                     echo '<script>
-                    alert("confirm password and password are not the same");
+                    //alert("confirm password and password are not the same");
+                    alert("invalid data");
                     window.location.href="register.php";
                     </script>';
                             }
@@ -82,7 +85,8 @@ function validate_Register_data($firstName,$lastName, $email,$password,$confirmP
             else{
                 
                 echo '<script>
-                alert("password must have special characters, numbers and letters");
+                //alert("password must have special characters, numbers and letters");
+                alert("invalid data");
                 window.location.href="register.php";
                 </script>';
         }
@@ -92,7 +96,8 @@ function validate_Register_data($firstName,$lastName, $email,$password,$confirmP
     else{
         
         echo '<script>
-        alert("invalid first name or last name, they should contains letters only");
+        //alert("invalid first name or last name, they should contains letters only");
+        alert("invalid data");
         window.location.href="register.php";
         </script>';
     }
@@ -108,7 +113,5 @@ $email=$_REQUEST['email'];
 $password=$_REQUEST['psw'];
 $confirm_password=$_REQUEST['confirmpsw'];
 validate_Register_data($first_name,$last_name,$email,$password,$confirm_password);
-
-
 
 ?>
