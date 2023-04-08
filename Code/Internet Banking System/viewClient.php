@@ -1,4 +1,12 @@
 <?php 
+function viewClientNameandDate(){
+    if (isset($_SESSION['firstName'])) {
+        echo '<script>document.querySelector(".welcomeTitle").innerHTML = "Welcome, '.$_SESSION['firstName'].'";</script>';
+    }
+    echo '<script>document.querySelector(".date").innerHTML = "'.date('Y-m-d').'";</script>';
+
+    
+}
 function viewTransactions($q){
     getBalance($q);
     session_start();

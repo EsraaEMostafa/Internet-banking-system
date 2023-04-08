@@ -102,13 +102,10 @@
     
     <?php
       
-      if (isset($_SESSION['firstName'])) {
-        echo '<script>document.querySelector(".welcomeTitle").innerHTML = "Welcome, '.$_SESSION['firstName'].'";</script>';
-    }
-    echo '<script>document.querySelector(".date").innerHTML = "'.date('Y-m-d').'";</script>';
+      require_once('viewClient.php');
 
-    
-    
+// Call the function
+      viewClientNameandDate();
     ?>
   </body>
 </html>
