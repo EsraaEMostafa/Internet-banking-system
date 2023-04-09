@@ -25,18 +25,20 @@
         ><br />
         <input
           type="email"
+          class="input-field"
           placeholder="Type your email"
           name="email"
-          required
+          
         /><br />
 
         <label for="psw"><b>Password</b></label
         ><br />
         <input
           type="password"
+          class="input-field"
           placeholder="Type your password"
           name="psw"
-          required
+          
         /><br />
 
         <button type="submit">Login</button><br />
@@ -47,5 +49,6 @@
       </div>
       <br />
     </form>
+  
   </body>
 </html>

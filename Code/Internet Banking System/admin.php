@@ -21,7 +21,7 @@
         <img src="logo.jpeg" class="logo" width="100px" height="100px" />
         <div class="closeaccs">
         
-          <form class="closeclientAcc" method="post" action="closeAccount.php" >
+          <form class="closeclientAcc" method="post" action="viewAdmin.php" >
             <input
               type="number"
               placeholder="Account No."
@@ -30,12 +30,16 @@
               required
             />
             <br />
-            <button class="closeAccBtn">Close Account</button>
-          </form>
-         
-        </div>
-      </div>
+            <button type="submit" class="closeAccBtn" name="closeAccountButton">Close Account</button>
 
+          </form>
+         <button style="width:60%;height:30%;margin-top:7px;"class="logout" onclick="location.href='logout.php'">
+         Log Out
+          </button>
+        </div>
+        
+      </div>
+      
       <table class="allaccounts">
         <tr>
           
@@ -44,7 +48,8 @@
           <th>Name</th>
           <th>Email</th>
         </tr>
-        <?php include 'allAccounts.php'; ?>
+        <?php include("viewAdmin.php");
+              viewAllAccountsAdmin();?>
       </table>
     </center>
   </body>
