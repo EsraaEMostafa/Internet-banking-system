@@ -111,6 +111,7 @@ function transfer_money($account_number,$money_amount){
             if(!$receiverValidation && !$moneyValidation){
 
                 updateBalancesAndTransactions($sender, $account_number, $money_amount, $connection);
+                
         }
             else{
                 echo '<script>
