@@ -1,1 +1,0 @@
-interent banking system amany
