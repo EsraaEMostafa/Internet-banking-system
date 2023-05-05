@@ -19,18 +19,16 @@ function validate_Register_data($firstName,$lastName, $email,$password,$confirmP
         die("Error". mysqli_connect_error()); 
     }
 
-    $firstnamespecialchars=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $firstName);
-    $lastnamespecialchars=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $lastName);
-    $firstnamenums=preg_match('@[0-9]@', $firstName);
-    $lastnamenums=preg_match('@[0-9]@', $lastName);
+    
     $emailFormat=filter_var($email, FILTER_VALIDATE_EMAIL);
     // Validate password strength
     
     $lowercase = preg_match('@[a-z]@', $password);
     $number    = preg_match('@[0-9]@', $password);
     $specialChars = preg_match('@[^\w]@', $password);
-    $firstNamespaces=preg_match('/^\S.*\S$/', $firstName);
-    $lasttNamespaces=preg_match('/^\S.*\S$/', $lastName);
+    
+    $firstNameValidate=preg_match('/[^A-Za-z]/', $firstName);
+    $lastNameValidate=preg_match('/[^A-Za-z]/', $lastName);
     $clienttable="select * from client where (email='$email');";
     $res=mysqli_query($connection,$clienttable);
 
@@ -50,7 +48,7 @@ function validate_Register_data($firstName,$lastName, $email,$password,$confirmP
     }
     else{
        
-        if(!$firstnamespecialchars && !$lastnamespecialchars && !$firstnamenums && !$lastnamenums && $firstNamespaces && $lasttNamespaces && strlen($firstName)>=2 && strlen($lastName)>=2 && $emailFormat){
+        if(!$firstNameValidate && !$lastNameValidate && strlen($firstName)>=2 && strlen($lastName)>=2 && $emailFormat){
             if($lowercase && $number && $specialChars && strlen($password) >= 8){
                 if($confirmPassword==$password){
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
