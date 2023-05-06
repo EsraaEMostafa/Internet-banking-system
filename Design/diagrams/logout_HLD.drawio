@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" modified="2023-04-08T17:43:43.999Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="qjU5b_gqZnyJT-NoOgvn" version="21.1.5" type="device">
+  <diagram name="Page-1" id="Z-sL1RIAxcBIi1t8O_oD">
+    <mxGraphModel dx="880" dy="452" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="o8dqbVFAEUxuqoPWNQi0-37" value="Client&lt;br&gt;" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;labelBackgroundColor=#ffffff;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="150" y="70" width="20" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="o8dqbVFAEUxuqoPWNQi0-38" value="" style="endArrow=block;endFill=1;endSize=6;html=1;entryX=-0.2;entryY=0.073;entryDx=0;entryDy=0;entryPerimeter=0;" parent="o8dqbVFAEUxuqoPWNQi0-37" target="o8dqbVFAEUxuqoPWNQi0-42" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="10" y="100" as="sourcePoint" />
+            <mxPoint x="280" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o8dqbVFAEUxuqoPWNQi0-39" value="Login Page&lt;br&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="580" y="70" width="100" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="o8dqbVFAEUxuqoPWNQi0-40" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="o8dqbVFAEUxuqoPWNQi0-39" vertex="1">
+          <mxGeometry x="45" y="230" width="10" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="o8dqbVFAEUxuqoPWNQi0-48" value="" style="endArrow=block;endFill=1;endSize=6;html=1;entryX=0.1;entryY=0.421;entryDx=0;entryDy=0;entryPerimeter=0;" parent="o8dqbVFAEUxuqoPWNQi0-39" edge="1" target="o8dqbVFAEUxuqoPWNQi0-40">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-135" y="290" as="sourcePoint" />
+            <mxPoint x="40" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o8dqbVFAEUxuqoPWNQi0-41" value="View Account Page" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="390" y="70" width="100" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="o8dqbVFAEUxuqoPWNQi0-42" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="o8dqbVFAEUxuqoPWNQi0-41" vertex="1">
+          <mxGeometry x="45" y="80" width="10" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="o8dqbVFAEUxuqoPWNQi0-43" value="Click on logout button" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="220" y="140" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="o8dqbVFAEUxuqoPWNQi0-49" value="load login page" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="480" y="315" width="100" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
