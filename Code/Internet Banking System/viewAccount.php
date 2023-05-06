@@ -26,12 +26,17 @@
               <button type="submit" class="accbtn" name="addNewAccount">Add New Account</button>
             </form>
             
-            <select name="accounts" id="account" onchange="showUser(this.value);showUserBalance(this.value)">
+            <!--select name="accounts" id="account" onchange="showUser(this.value);showUserBalance(this.value)">
               <option selected disabled>Select Account No.</option>
-              <?php include("viewClient.php");
+              <!?php include("viewClient.php");
               viewAccountsList();?>
             
-            </select>
+            </select-->
+            <h2 class="accountNumber">
+              <?php 
+              include("viewClient.php");
+              viewAccountNumber();?>
+            </h2>
               
           </div>
         </div>
@@ -40,12 +45,17 @@
         <div class="column">
           <div class="balance">
             <div>
-              <!--p class="balance__label">Current balance</p-->
+              <p class="balance__label">Current balance</p>
               <p class="balance__date">
                 As of <span class="date"></span>
               </p>
             </div>
-            <!--p class="balance__value"></p-->
+            <p class="balance__value">
+              <!--?php
+                include("viewClient.php");
+                getBalance();
+              ?-->
+            </p>
           </div>
 
           <!-- MOVEMENTS -->
@@ -57,6 +67,11 @@
               <div class="movements__date"></div>
               <div class="movements__value"></div>
             </div-->
+            <?php 
+              require_once("viewClient.php");
+              viewTransactions();
+            ?>
+            
             
           </div>
         </div>
@@ -106,6 +121,9 @@
 
 // Call the function
       viewClientNameandDate();
+      getBalance();
+      
+      
     ?>
   </body>
 </html>
