@@ -5,11 +5,12 @@ function viewClientNameandDate(){
     }
     echo '<script>document.querySelector(".date").innerHTML = "'.date('Y-m-d').'";</script>';
 
+
     
 }
-function viewTransactions($q){
-    getBalance($q);
-    session_start();
+function viewTransactions(){
+    
+    
     
     $connection=mysqli_connect("localhost","root","","internetbankingsystem");
     if($connection) {
@@ -18,35 +19,35 @@ function viewTransactions($q){
     else {
         die("Error". mysqli_connect_error()); 
     }
-    mysqli_select_db($connection,"ajax_demo");
-
-    $_SESSION['accountNo']=$q;  
-
-    $trans_table="select * from transactions where (accountnum='$q') order by trans_date desc;";
-    $res2=mysqli_query($connection,$trans_table) or die ( mysqli_error($connection));  
-    if ($res2->num_rows > 0){
-        while ($row2 = $res2->fetch_assoc()){
-            echo "<div class='movements__row'>";
-            echo "<div class='movements__type movements__type--$row2[transactionType]'>$row2[transactionType]</div>";
-            echo "<div class='movements__date'>$row2[trans_date]</div>";
-            echo "<div class='movements__value'>$row2[amount]LE</div>";
-            echo"</div>";
-        }
-    }
-    echo"<script>
-            
-           
-            document.querySelector('.movements').insertAdjacentHTML('afterbegin', html);
-
-            </script>";
     
 
+     
+    if(isset($_SESSION['accountNumber'])){
+        $trans_table="select * from transactions where (accountnum='$_SESSION[accountNumber]') order by trans_date desc;";
+        $res2=mysqli_query($connection,$trans_table) or die ( mysqli_error($connection));  
+        if ($res2->num_rows > 0){
+            while ($row2 = $res2->fetch_assoc()){
+            
+                echo "<div class='movements__row'>";
+                echo "<div class='movements__type movements__type--$row2[transactionType]'>$row2[transactionType]</div>";
+                echo "<div class='movements__date'>$row2[trans_date]</div>";
+                echo "<div class='movements__value'>$row2[amount]LE</div>";
+                echo"</div>";
+                echo "</script>";
+            }
+        }
+        echo"<script>
+                
+            
+                document.querySelector('.movements').insertAdjacentHTML('afterbegin', html);
+
+                </script>";
+    
+    }
     mysqli_close($connection);
 }
 // document.querySelector('.movements').innerHTML.insertAdjacentHTML('afterbegin', html);
-function getBalance($accountnum){
-    
-
+function getBalance(){
     $connection=mysqli_connect("localhost","root","","internetbankingsystem");
     if($connection) {
         //echo "success"; 
@@ -54,15 +55,13 @@ function getBalance($accountnum){
     else {
         die("Error". mysqli_connect_error()); 
     }
-    mysqli_select_db($connection,"ajax_demo");
-
-
-    $accounttable="select currentBalance from account where (accountNo='$accountnum');";
-    $res=mysqli_query($connection,$accounttable) or die ( mysqli_error($connection));  
-    $row = $res->fetch_assoc();
-    $balance=$row['currentBalance'];
-    echo "<h2><b>Current Balance: $balance LE</b></h2>";
-    
+    if(isset($_SESSION['accountNumber'])){
+        $accounttable="select currentBalance from account where (accountNo='$_SESSION[accountNumber]');";
+        $res=mysqli_query($connection,$accounttable) or die ( mysqli_error($connection));  
+        $row = $res->fetch_assoc();
+        $balance=$row['currentBalance'];
+        echo '<script>document.querySelector(".balance__value").innerHTML = "<b>'.$balance.' LE</b>";</script>';
+    }
 
     mysqli_close($connection);
 }
@@ -94,11 +93,11 @@ function transfer_money($account_number,$money_amount){
     else {
         die("Error". mysqli_connect_error()); 
     }
-    $sender=$_SESSION['accountNo'];
+    $sender=$_SESSION['accountNumber'];
     $receiverValidation=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $account_number);
     $moneyValidation=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $money_amount);
   
-    if($_SESSION['accountNo']!=null && $sender!= $account_number &&$account_number!=null && $money_amount!=null){
+    if($_SESSION['accountNumber']!=null && $sender!= $account_number &&$account_number!=null && $money_amount!=null){
     
     $accountt="select * from account where (accountNo='$account_number');";
     $res=mysqli_query($connection,$accountt) or die ( mysqli_error($connection));  
@@ -145,7 +144,7 @@ function transfer_money($account_number,$money_amount){
     mysqli_close($connection);
 }
 
-function viewAccountsList(){
+function viewAccountNumber(){
     session_start();
     $connection=mysqli_connect("localhost","root","","internetbankingsystem");
     if($connection) {
@@ -164,9 +163,13 @@ function viewAccountsList(){
         //$row = mysqli_fetch_assoc($res);
         while ($row = $res->fetch_assoc()){
             
-            echo "<option value='". $row['accountNo'] ."'>" .$row['accountNo'] ."</option>" ;
+            echo '<script>document.querySelector(".accountNumber").innerHTML = "&nbsp;&nbsp;Account Number: '.$row['accountNo'].'";</script>';
+            $_SESSION['accountNumber']=$row['accountNo'];
             
             }   
+    }
+    else{
+        echo '<script>document.querySelector(".accountNumber").innerHTML = "&nbsp;&nbsp;No Account";</script>';
     }
 }
     mysqli_close($connection);
@@ -180,22 +183,32 @@ function add_account(){
     else {
         die("Error". mysqli_connect_error()); 
     }
+    
     if(!empty($_SESSION['clientID'])){
-        $balance=0;
-        $query="INSERT INTO account(client_ID,currentBalance) VALUES('".$_SESSION['clientID']."','".$balance."')";
-        $result = mysqli_query($connection, $query);
-            //Test if there was a query error
-            if ($result) {
-                //SUCCESS
-                $accountNo = mysqli_insert_id($connection);
-                echo '<script> alert("your account Number is '.$accountNo.'");
-                    window.location.href="viewAccount.php";
-                    </script>';
-            } else {
-                //FAILURE
-                die("Database query failed. " . mysqli_error($connection)); 
-                //last bit is for me, delete when done
-            }
+        $query2="SELECT * FROM account WHERE client_ID= '".$_SESSION['clientID']."'";
+        $result4 = mysqli_query($connection, $query2) or die ( mysqli_error($connection)); 
+        if ($result4->num_rows == 0){
+            $balance=0;
+            $query="INSERT INTO account(client_ID,currentBalance) VALUES('".$_SESSION['clientID']."','".$balance."')";
+            $result = mysqli_query($connection, $query);
+                //Test if there was a query error
+                if ($result) {
+                    //SUCCESS
+                    $accountNo = mysqli_insert_id($connection);
+                    echo '<script> alert("your account Number is '.$accountNo.'");
+                        window.location.href="viewAccount.php";
+                        </script>';
+                } else {
+                    //FAILURE
+                    die("Database query failed. " . mysqli_error($connection)); 
+                    //last bit is for me, delete when done
+                }
+        }
+        else{
+            echo '<script> alert("You already have an account, You cannot create another one.");
+                            window.location.href="viewAccount.php";
+                            </script>';
+        }
     }
     mysqli_close($connection);
 }
@@ -214,12 +227,6 @@ else if(isset($_REQUEST['addNewAccount'])){
     add_account();
 }
 
-
-else{
-    $q = intval($_REQUEST['q']);
-    viewTransactions($q);
-
-}
 
 
 
