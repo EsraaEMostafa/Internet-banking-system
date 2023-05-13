@@ -97,7 +97,7 @@ function transfer_money($account_number,$money_amount){
     $receiverValidation=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $account_number);
     $moneyValidation=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $money_amount);
   
-    if($_SESSION['accountNumber']!=null && $sender!= $account_number &&$account_number!=null && $money_amount!=null){
+    if($_SESSION['accountNumber']!=null && $sender!= $account_number){
     
     $accountt="select * from account where (accountNo='$account_number');";
     $res=mysqli_query($connection,$accountt) or die ( mysqli_error($connection));  
@@ -107,14 +107,14 @@ function transfer_money($account_number,$money_amount){
         $res2=mysqli_query($connection,$accounttt) or die ( mysqli_error($connection)); 
         $row2 = $res2->fetch_assoc();
         if($row2['currentBalance'] >= $money_amount){
-            if(!$receiverValidation && !$moneyValidation){
+            if(!$receiverValidation && !$moneyValidation && $money_amount!=0){
 
                 updateBalancesAndTransactions($sender, $account_number, $money_amount, $connection);
                 
         }
             else{
                 echo '<script>
-                alert("invalid input");
+                alert("invalid input, please enter only numbers excluding - or zero");
                 window.location.href="viewAccount.php";
                 </script>';
             }
@@ -136,7 +136,7 @@ function transfer_money($account_number,$money_amount){
 
     }else{
         echo '<script>
-                alert("cannot transfer");
+                alert("You entered your own account number, please enter the recipient account number");
                 window.location.href="viewAccount.php";
                 </script>';
 
