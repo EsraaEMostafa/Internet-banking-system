@@ -91,7 +91,7 @@
                     placeholder="Account no."
                     name="accnum"
                     class="accNum"
-                    
+                    required
                   />
                 </div>
                 <div class="form2">
@@ -101,7 +101,7 @@
                     placeholder="Amount"
                     name="amount"
                     class="amountmoney"
-                    
+                    required
                   />
                 </div>
               </div>
